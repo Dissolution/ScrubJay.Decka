@@ -292,7 +292,7 @@ public readonly struct Card : ICardPart<Card>
         }
         else
         {
-            throw Ex.Argument(this);
+            throw Ex.Arg(this);
         }
     }
 

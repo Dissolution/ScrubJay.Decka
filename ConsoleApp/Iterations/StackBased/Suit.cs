@@ -142,7 +142,7 @@ public readonly struct Suit : ICardPart<Suit>
             return onClub();
         if (_value == 3)
             return onHeart();
-        throw Ex.Argument(this);
+        throw Ex.Arg(this);
     }
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

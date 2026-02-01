@@ -17,11 +17,11 @@ public static class PileExtensions
         public static RefResult<Pile> TryRead(Span<byte> bytes)
         {
             if (bytes.Length < 2)
-                return Ex.Argument(bytes);
+                return Ex.Arg(bytes);
             byte capacity = bytes[0];
             byte count = bytes[1];
             if (bytes.Length != (capacity + 2))
-                return Ex.Argument(bytes);
+                return Ex.Arg(bytes);
             Pile pile = new(bytes[2..].AsCards(), count);
             return RefResult<Pile>.Ok(pile);
         }

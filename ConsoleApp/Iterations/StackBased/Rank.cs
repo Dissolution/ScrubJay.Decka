@@ -228,7 +228,7 @@ public readonly struct Rank : ICardPart<Rank>
             return onKing();
         if (_value == 15)
             return onJoker();
-        throw Ex.Argument(this);
+        throw Ex.Arg(this);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

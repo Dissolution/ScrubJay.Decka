@@ -2,6 +2,7 @@
 using ScrubJay.Decka.Sandbox.Iterations.StackBased.Display;
 using ScrubJay.Randomization;
 using ScrubJay.Randomization.Seeding;
+using ScrubJay.Text.Building;
 
 var starting = Standard52.Default.Cards.DeepClone();
 

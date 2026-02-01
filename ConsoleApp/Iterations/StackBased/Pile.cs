@@ -30,7 +30,7 @@ public ref struct Pile
         get
         {
             if ((uint)offset >= (uint)_count)
-                throw Ex.Argument(offset);
+                throw Ex.Arg(offset);
             return ref Unsafe.Add<Card>(ref _firstCard, offset);
         }
 #else
@@ -46,7 +46,7 @@ public ref struct Pile
         {
             int offset = stackIndex.GetOffset(_count);
             if ((uint)offset >= (uint)_count)
-                throw Ex.Argument(stackIndex);
+                throw Ex.Arg(stackIndex);
             return ref Unsafe.Add<Card>(ref _firstCard, offset);
         }
 #else
