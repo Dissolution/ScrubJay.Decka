@@ -94,7 +94,7 @@ public static class ColorExtensions
         
         public string ToString(DisplayFormat format)
         {
-            return DisplayFormat.For<Color>().Format(color, format);
+            return DisplayFormat.For<Color>().Display(color, format);
         }
     }
 }

@@ -77,10 +77,17 @@ public static class SuitExtensions
 
     extension(Suit)
     {
+        public static Card operator |(Suit suit, Rank rank)
+        {
+            return Card.New(suit, rank);
+        }
+        
         public static byte Mask => 0b00_11_0000;
         public static int BitCount => 2;
         public static Suit Default => Spade;
 
+        public static Suit[] Values => [Spade, Diamond, Club, Heart];
+        
         public static Result<Suit> TryParse(string str)
         {
             return DisplayFormat.For<Suit>().TryParse(str);
@@ -135,7 +142,7 @@ public static class SuitExtensions
 
         public string ToString(DisplayFormat format)
         {
-            return DisplayFormat.For<Suit>().Format(suit, format);
+            return DisplayFormat.For<Suit>().Display(suit, format);
         }
     }
 }

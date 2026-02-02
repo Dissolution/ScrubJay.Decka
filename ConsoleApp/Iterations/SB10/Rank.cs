@@ -125,6 +125,12 @@ public static class RankExtensions
 
     extension(Rank)
     {
+          
+        public static Card operator |(Rank rank, Suit suit)
+        {
+            return Card.New(rank, suit);
+        }
+        
         public static byte Mask => 0b0000_1111;
         
         public static int BitCount => 4;
@@ -191,7 +197,7 @@ public static class RankExtensions
         
         public string ToString(DisplayFormat format)
         {
-            return DisplayFormat.For<Rank>().Format(rank, format);
+            return DisplayFormat.For<Rank>().Display(rank, format);
         }
     }
 }
