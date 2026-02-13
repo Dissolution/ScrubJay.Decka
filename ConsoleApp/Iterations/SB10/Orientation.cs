@@ -42,8 +42,8 @@ public static class OrientationExtensions
     {
         DisplayFormat
             .Register<Orientation>()
-            .Register(Upright, nameof(Upright), "U", "↑", "⬆️")
-            .Register(Reversed, nameof(Reversed), "R", "↓", "⬇️");
+            .FormatAs(Upright, nameof(Upright), "U", "↑", "⬆️")
+            .FormatAs(Reversed, nameof(Reversed), "R", "↓", "⬇️");
     }
     
     extension(Orientation)

@@ -7,18 +7,18 @@ public interface IBoard<TSelf> : IDeepCloneable<TSelf>
 
 public class AcesUpBoard : IBoard<AcesUpBoard>
 {
-    public Pile Deck { get; init; } = new(52);
+    public FixedPile Deck { get; init; } = new(52);
 
-    public Pile PileA { get; init; } = new(13);
-    public Pile PileB { get; init; } = new(13);
-    public Pile PileC { get; init; } = new(13);
-    public Pile PileD { get; init; } = new(13);
+    public FixedPile PileA { get; init; } = new(13);
+    public FixedPile PileB { get; init; } = new(13);
+    public FixedPile PileC { get; init; } = new(13);
+    public FixedPile PileD { get; init; } = new(13);
 
-    public Pile Discard { get; init; } = new(48);
+    public FixedPile Discard { get; init; } = new(48);
 
     public BoardLog Log { get; init; } = new();
 
-    public Pile this[PileIndex index] => index switch
+    public FixedPile this[PileIndex index] => index switch
         {
             PileIndex.Deck => Deck,
             PileIndex.PileA => PileA,

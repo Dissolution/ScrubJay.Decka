@@ -145,22 +145,22 @@ public static class RankExtensions
     {
         DisplayFormat
             .Register<Rank>()
-            .Register(Rank.None, nameof(Rank.None), "_", "？", "⬜")
-            .Register(Rank.Ace, nameof(Ace), "A", "Ａ", "🅰️")
-            .Register(Rank.Two, nameof(Two), "2", "２", "②")
-            .Register(Rank.Three, nameof(Three), "3", "３", "③")
-            .Register(Rank.Four, nameof(Four), "4", "４", "④")
-            .Register(Rank.Five, nameof(Five), "5", "５", "⑤")
-            .Register(Rank.Six, nameof(Six), "6", "６", "⑥")
-            .Register(Rank.Seven, nameof(Seven), "7", "７", "⑦")
-            .Register(Rank.Eight, nameof(Eight), "8", "８", "⑧")
-            .Register(Rank.Nine, nameof(Nine), "9", "９", "⑨")
-            .Register(Rank.Ten, nameof(Ten), "X", "Ｘ", "🔟")
-            .Register(Rank.Jack, nameof(Jack), "J", "Ｊ", "👦")
-            .Register(Rank.Knight, nameof(Knight), "N", "Ｎ", "🐴")
-            .Register(Rank.Queen, nameof(Queen), "Q", "Ｑ", "👸")
-            .Register(Rank.King, nameof(King), "K", "Ｋ", "🤴")
-            .Register(Rank.Joker, nameof(Joker), "~", "～", "🃏");
+            .FormatAs(Rank.None, nameof(Rank.None), "_", "？", "⬜")
+            .FormatAs(Rank.Ace, nameof(Ace), "A", "Ａ", "🅰️")
+            .FormatAs(Rank.Two, nameof(Two), "2", "２", "②")
+            .FormatAs(Rank.Three, nameof(Three), "3", "３", "③")
+            .FormatAs(Rank.Four, nameof(Four), "4", "４", "④")
+            .FormatAs(Rank.Five, nameof(Five), "5", "５", "⑤")
+            .FormatAs(Rank.Six, nameof(Six), "6", "６", "⑥")
+            .FormatAs(Rank.Seven, nameof(Seven), "7", "７", "⑦")
+            .FormatAs(Rank.Eight, nameof(Eight), "8", "８", "⑧")
+            .FormatAs(Rank.Nine, nameof(Nine), "9", "９", "⑨")
+            .FormatAs(Rank.Ten, nameof(Ten), "X", "Ｘ", "🔟")
+            .FormatAs(Rank.Jack, nameof(Jack), "J", "Ｊ", "👦")
+            .FormatAs(Rank.Knight, nameof(Knight), "N", "Ｎ", "🐴")
+            .FormatAs(Rank.Queen, nameof(Queen), "Q", "Ｑ", "👸")
+            .FormatAs(Rank.King, nameof(King), "K", "Ｋ", "🤴")
+            .FormatAs(Rank.Joker, nameof(Joker), "~", "～", "🃏");
     }
 
     extension(Rank)

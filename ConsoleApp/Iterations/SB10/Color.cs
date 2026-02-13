@@ -50,8 +50,8 @@ public static class ColorExtensions
     static ColorExtensions()
     {
         DisplayFormat.Register<Color>()
-            .Register(Black, nameof(Black), "B", "●", "◼️")
-            .Register(Red, nameof(Red), "R", "○", "🔴");
+            .FormatAs(Black, nameof(Black), "B", "●", "◼️")
+            .FormatAs(Red, nameof(Red), "R", "○", "🔴");
     }
 
     extension(Color)

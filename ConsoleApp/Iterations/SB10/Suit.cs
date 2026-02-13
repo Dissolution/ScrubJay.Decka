@@ -72,10 +72,10 @@ public static class SuitExtensions
     {
         DisplayFormat
             .Register<Suit>()
-            .Register(Spade, nameof(Spade), "S", "♠", "♠️")
-            .Register(Diamond, nameof(Diamond), "D", "♦", "♦️")
-            .Register(Club, nameof(Club), "C", "♣", "♣️")
-            .Register(Heart, nameof(Heart), "H", "♥", "♥️");
+            .FormatAs(Spade, nameof(Spade), "S", "♠", "♠️")
+            .FormatAs(Diamond, nameof(Diamond), "D", "♦", "♦️")
+            .FormatAs(Club, nameof(Club), "C", "♣", "♣️")
+            .FormatAs(Heart, nameof(Heart), "H", "♥", "♥️");
     }
 
     extension(Suit)

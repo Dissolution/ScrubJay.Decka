@@ -91,9 +91,117 @@ public enum Card : byte
 [PublicAPI]
 public static class CardExtensions
 {
+    internal const byte MASK = 0b11111111;
+
+    static CardExtensions()
+    {
+        DisplayFormat
+            .Register<Card>()
+            .Use(Format, TryParse);
+    }
+
+    private static string Format(Card card, DisplayFormat format)
+    {
+        if (format == DisplayFormat.Default)
+            return card.ToString();
+
+        if (format is DisplayFormat.Short or DisplayFormat.Emoji)
+            return card.Rank.ToString(format) + card.Suit.ToString(format);
+
+        if (card.Suit == Suit.Spade)
+        {
+            return card.Rank.Match(
+                onAce: () => "🂡",
+                onTwo: () => "🂢",
+                onThree: () => "🂣",
+                onFour: () => "🂤",
+                onFive: () => "🂥",
+                onSix: () => "🂦",
+                onSeven: () => "🂧",
+                onEight: () => "🂨",
+                onNine: () => "🂩",
+                onTen: () => "🂪",
+                onJack: () => "🂫",
+                onKnight: () => "🂬",
+                onQueen: () => "🂭",
+                onKing: () => "🂮",
+                onJoker: () => "🃟"
+            );
+        }
+        else if (card.Suit == Suit.Diamond)
+        {
+            return card.Rank.Match(
+                onAce: () => "🃁",
+                onTwo: () => "🃂",
+                onThree: () => "🃃",
+                onFour: () => "🃄",
+                onFive: () => "🃅",
+                onSix: () => "🃆",
+                onSeven: () => "🃇",
+                onEight: () => "🃈",
+                onNine: () => "🃉",
+                onTen: () => "🃊",
+                onJack: () => "🃋",
+                onKnight: () => "🃌",
+                onQueen: () => "🃍",
+                onKing: () => "🃎",
+                onJoker: () => "🂿"
+            );
+        }
+        else if (card.Suit == Suit.Club)
+        {
+            return card.Rank.Match(
+                onAce: () => "🃑",
+                onTwo: () => "🃒",
+                onThree: () => "🃓",
+                onFour: () => "🃔",
+                onFive: () => "🃕",
+                onSix: () => "🃖",
+                onSeven: () => "🃗",
+                onEight: () => "🃘",
+                onNine: () => "🃙",
+                onTen: () => "🃚",
+                onJack: () => "🃛",
+                onKnight: () => "🃜",
+                onQueen: () => "🃝",
+                onKing: () => "🃞",
+                onJoker: () => "🃟"
+            );
+        }
+        else if (card.Suit == Suit.Heart)
+        {
+            return card.Rank.Match(
+                onAce: () => "🂱",
+                onTwo: () => "🂲",
+                onThree: () => "🂳",
+                onFour: () => "🂴",
+                onFive: () => "🂵",
+                onSix: () => "🂶",
+                onSeven: () => "🂷",
+                onEight: () => "🂸",
+                onNine: () => "🂹",
+                onTen: () => "🂺",
+                onJack: () => "🂻",
+                onKnight: () => "🂼",
+                onQueen: () => "🂽",
+                onKing: () => "🂾",
+                onJoker: () => "🂿"
+            );
+        }
+        else
+        {
+            throw Ex.UndefinedEnum(card);
+        }
+    }
+
+    private static Result<Card> TryParse(string? str, StringComparison comparison)
+    {
+        return Ex.NotImplemented();
+    }
+
     extension(Card)
     {
-        public static byte Mask => 0b11111111;
+        public static byte Mask => MASK;
 
         public static int BitCount => 8;
 
@@ -112,127 +220,37 @@ public static class CardExtensions
 
     extension(Card card)
     {
-        public Orientation Orientation => (Orientation)((byte)card & Orientation.Mask);
-        
-        public Facing Facing => (Facing)((byte)card & Facing.Mask);
+        public Orientation Orientation
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => (Orientation)((byte)card & OrientationExtensions.MASK);
+        }
+
+        public Facing Facing
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => (Facing)((byte)card & FacingExtensions.MASK);
+        }
 
         public Suit Suit
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => (Suit)((byte)card & Suit.Mask);
+            get => (Suit)((byte)card & SuitExtensions.MASK);
         }
 
         public Color Color
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => (Color)((byte)card & Color.Mask);
+            get => (Color)((byte)card & ColorExtensions.MASK);
         }
-
+        
         public Rank Rank
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => (Rank)((byte)card & Rank.Mask);
-        }
-
-
-      
-
-     
-
-        public string ToString(DisplayFormat format)
-        {
-            if (format == DisplayFormat.Default)
-                return card.ToString();
-            if (format == DisplayFormat.Short || format == DisplayFormat.Emoji)
-                return card.Rank.ToString(format) + card.Suit.ToString(format);
-
-            if (card.Suit == Suit.Spade)
-            {
-                return card.Rank.Match(
-                    onAce: () => "🂡",
-                    onTwo: () => "🂢",
-                    onThree: () => "🂣",
-                    onFour: () => "🂤",
-                    onFive: () => "🂥",
-                    onSix: () => "🂦",
-                    onSeven: () => "🂧",
-                    onEight: () => "🂨",
-                    onNine: () => "🂩",
-                    onTen: () => "🂪",
-                    onJack: () => "🂫",
-                    onKnight: () => "🂬",
-                    onQueen: () => "🂭",
-                    onKing: () => "🂮",
-                    onJoker: () => "🃟"
-                );
-            }
-            else if (card.Suit == Suit.Diamond)
-            {
-                return card.Rank.Match(
-                    onAce: () => "🃁",
-                    onTwo: () => "🃂",
-                    onThree: () => "🃃",
-                    onFour: () => "🃄",
-                    onFive: () => "🃅",
-                    onSix: () => "🃆",
-                    onSeven: () => "🃇",
-                    onEight: () => "🃈",
-                    onNine: () => "🃉",
-                    onTen: () => "🃊",
-                    onJack: () => "🃋",
-                    onKnight: () => "🃌",
-                    onQueen: () => "🃍",
-                    onKing: () => "🃎",
-                    onJoker: () => "🂿"
-                );
-            }
-            else if (card.Suit == Suit.Club)
-            {
-                return card.Rank.Match(
-                    onAce: () => "🃑",
-                    onTwo: () => "🃒",
-                    onThree: () => "🃓",
-                    onFour: () => "🃔",
-                    onFive: () => "🃕",
-                    onSix: () => "🃖",
-                    onSeven: () => "🃗",
-                    onEight: () => "🃘",
-                    onNine: () => "🃙",
-                    onTen: () => "🃚",
-                    onJack: () => "🃛",
-                    onKnight: () => "🃜",
-                    onQueen: () => "🃝",
-                    onKing: () => "🃞",
-                    onJoker: () => "🃟"
-                );
-            }
-            else if (card.Suit == Suit.Heart)
-            {
-                return card.Rank.Match(
-                    onAce: () => "🂱",
-                    onTwo: () => "🂲",
-                    onThree: () => "🂳",
-                    onFour: () => "🂴",
-                    onFive: () => "🂵",
-                    onSix: () => "🂶",
-                    onSeven: () => "🂷",
-                    onEight: () => "🂸",
-                    onNine: () => "🂹",
-                    onTen: () => "🂺",
-                    onJack: () => "🂻",
-                    onKnight: () => "🂼",
-                    onQueen: () => "🂽",
-                    onKing: () => "🂾",
-                    onJoker: () => "🂿"
-                );
-            }
-            else
-            {
-                throw Ex.UndefinedEnum(card);
-            }
+            get => (Rank)((byte)card & RankExtensions.MASK);
         }
     }
-    
+
     public static Card With(this Card card, Orientation orientation)
     {
         Emit.Ldarg(nameof(card));
@@ -244,7 +262,16 @@ public static class CardExtensions
         return Return<Card>();
     }
     
-    
+    public static Card With(this Card card, Facing facing)
+    {
+        Emit.Ldarg(nameof(card));
+        Emit.Ldc_I4(FacingExtensions.MASK);
+        Emit.Not();
+        Emit.And();
+        Emit.Ldarg(nameof(facing));
+        Emit.Or();
+        return Return<Card>();
+    }
     
     public static Card With(this Card card, Suit suit)
     {
@@ -256,7 +283,7 @@ public static class CardExtensions
         Emit.Or();
         return Return<Card>();
     }
-    
+
     public static Card With(this Card card, Rank rank)
     {
         Emit.Ldarg(nameof(card));
@@ -267,5 +294,4 @@ public static class CardExtensions
         Emit.Or();
         return Return<Card>();
     }
-    
 }

@@ -6,14 +6,14 @@ public static class DisplayFormatExtensions
     extension(DisplayFormat)
     {
         /// <summary>
-        /// Start registering the mapping of <typeparamref name="E"/> members to <see cref="DisplayFormat"/> renderings.
+        /// Start registering the mapping of <typeparamref name="TEnum"/> members to <see cref="DisplayFormat"/> renderings.
         /// </summary>
-        /// <typeparam name="E"></typeparam>
+        /// <typeparam name="TEnum"></typeparam>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static DisplayFormatRegistration<E> Register<E>()
-            where E : struct, Enum 
-            => DisplayFormatRegistration<E>.Instance;
+        public static DisplayFormatter.DisplayFormatRegistration<TEnum> Register<TEnum>()
+            where TEnum : struct, Enum
+            => DisplayFormatter.Register<TEnum>();
     }
 
 
@@ -22,17 +22,9 @@ public static class DisplayFormatExtensions
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Result<E> TryParse(string? str, StringComparison comparison = StringComparison.Ordinal) =>
-            DisplayFormatRegistration<E>.Instance
-                .TryParse(str, comparison);
+            DisplayFormatter.TryParse<E>(str, comparison);
     }
 
-    extension<E>(E @enum)
-        where E : struct, Enum
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public string ToString(DisplayFormat format) 
-            => DisplayFormatRegistration<E>.Instance.Format(@enum, format);
-    }
     
     
 }

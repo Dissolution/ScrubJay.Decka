@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 namespace ScrubJay.Decka.Sandbox.Iterations.SB10;
 
-public class Pile : IDeepCloneable<Pile>
+public sealed class FixedPile : IDeepCloneable<FixedPile>
 {
     private Card[] _cards;
     private int _position;
@@ -33,13 +33,13 @@ public class Pile : IDeepCloneable<Pile>
     }
     
 
-    public Pile(int capacity)
+    public FixedPile(int capacity)
     {
         _cards = new Card[capacity];
         _position = 0;
     }
 
-    public Pile(params Card[] cards)
+    public FixedPile(params Card[] cards)
     {
         _cards = cards;
         _position = 0;
@@ -54,7 +54,7 @@ public class Pile : IDeepCloneable<Pile>
     public void PushMany(ReadOnlySpan<Card> cards)
     {
         Debug.Assert(_position + cards.Length <= Capacity);
-        cards.NotsafeCopyTo(_cards.AsSpan(_position));
+        CardHelper.Notsafe.CopyTo(cards, _cards.AsSpan(_position));
         _position += cards.Length;
     }
 
@@ -82,10 +82,10 @@ public class Pile : IDeepCloneable<Pile>
         return card;
     }
 
-    public Pile DeepClone()
+    public FixedPile DeepClone()
     {
-        var clone = new Pile(Capacity);
-        _cards.AsSpan(0, _position).NotsafeCopyTo(clone._cards);
+        var clone = new FixedPile(Capacity);
+        CardHelper.Notsafe.CopyTo(_cards.AsSpan(0, _position), clone._cards);
         clone._position = _position;
         return clone;
     }
