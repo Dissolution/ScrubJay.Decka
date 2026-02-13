@@ -16,7 +16,7 @@
     <ItemGroup>
         <Using Include="ScrubJay.Prelude" Static="true"/>
         <Using Include="ScrubJay.Functional.Prelude" Static="true"/>
-        
+        <Using Include="System.Diagnostics.CodeAnalysis"/>
         <Using Include="System.Runtime.CompilerServices"/>
         <Using Include="System.Runtime.InteropServices"/>
         <Using Include="JetBrains.Annotations"/>      
@@ -32,6 +32,7 @@
         <Using Include="ScrubJay.Utilities"/>
         <Using Include="ScrubJay.Validation"/>
 
+        <Using Include="System.Diagnostics.CodeAnalysis.NotNullAttribute" Alias="NotNullAttribute" />
     </ItemGroup>
 
     <ItemGroup>

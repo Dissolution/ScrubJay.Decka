@@ -1,12 +1,23 @@
+using ScrubJay.Decka.Sandbox.Iterations.SB10.Formatting;
 using static ScrubJay.Decka.Sandbox.Iterations.SB10.Color;
 
 namespace ScrubJay.Decka.Sandbox.Iterations.SB10;
 
 /// <summary>
-/// A <see cref="Card"/> and/or <see cref="Suit"/>'s Color:
-/// <list type="bullet">
-/// <item><c>0b000_0_0000</c> ◼️ Black</item>
-/// <item><c>0b000_1_0000</c> 🔴 Red</item>
+/// A <see cref="Card"/> and/or <see cref="Suit"/>'s color:
+/// <list type="table">
+///     <listheader>
+///         <term>Name</term>
+///         <description><c>____Bits____  |  Value  |  Short  |  Unicode  |  Emoji</c></description>
+///     </listheader>
+///     <item>
+///         <term>Black</term>
+///         <description><c>0b000_0_0000  |  &#8199;&#8199;&#8199;&#8199;0  |  &#8199;&#8199;B&#8199;&#8199;  |  &#8199;&#8199;&#8199;●&#8199;&#8199;&#8199;  |  &#8199;&#8199;◼️&#8199;</c></description>
+///     </item>
+///     <item>
+///         <term>Red</term>
+///         <description><c>0b000_1_0000  |  &#8199;&#8199;&#8199;16  |  &#8199;&#8199;R&#8199;&#8199;  |  &#8199;&#8199;&#8199;○&#8199;&#8199;&#8199;  |  &#8199;&#8199;🔴&#8199;</c></description>
+///     </item>
 /// </list>
 /// </summary>
 /// <remarks>
@@ -34,37 +45,30 @@ public enum Color : byte
 [PublicAPI]
 public static class ColorExtensions
 {
+    internal const byte MASK = 0b000_1_0000;
+
     static ColorExtensions()
     {
-        var dm = DisplayFormat.For<Color>();
-        dm.Map(Black)
-            .Add(DisplayFormat.ToString, nameof(Black))
-            .Add(DisplayFormat.Short, "B")
-            .Add(DisplayFormat.Unicode, "⬛")
-            .Add(DisplayFormat.Emoji, "◼️");
-        dm.Map(Red)
-            .Add(DisplayFormat.ToString, nameof(Red))
-            .Add(DisplayFormat.Short, "R")
-            .Add(DisplayFormat.Unicode, "🟥")
-            .Add(DisplayFormat.Emoji, "🔴");
+        DisplayFormat.Register<Color>()
+            .Register(Black, nameof(Black), "B", "●", "◼️")
+            .Register(Red, nameof(Red), "R", "○", "🔴");
     }
-    
+
     extension(Color)
     {
-        public static byte Mask => 0b000_1_0000;
+        public static byte Mask => MASK;
+        
         public static int BitCount => 1;
+        
         public static Color Default => Black;
 
-        public static Result<Color> TryParse(string str)
-        {
-            return DisplayFormat.For<Color>().TryParse(str);
-        }
+        public static Color[] Values => [Black, Red];
     }
 
     extension(Color color)
     {
         public void Match(
-            Action? onBlack, 
+            Action? onBlack,
             Action? onRed)
         {
             switch (color)
@@ -79,9 +83,9 @@ public static class ColorExtensions
                     throw Ex.Arg(color);
             }
         }
-        
+
         public R Match<R>(
-            Func<R> onBlack, 
+            Func<R> onBlack,
             Func<R> onRed)
         {
             return color switch
@@ -90,11 +94,6 @@ public static class ColorExtensions
                 Red => onRed(),
                 _ => throw Ex.UndefinedEnum(color),
             };
-        }
-        
-        public string ToString(DisplayFormat format)
-        {
-            return DisplayFormat.For<Color>().Display(color, format);
         }
     }
 }

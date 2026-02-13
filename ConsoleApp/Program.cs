@@ -1,4 +1,5 @@
 ﻿using ScrubJay.Decka.Sandbox.Iterations.SB10;
+using ScrubJay.Decka.Sandbox.Iterations.SB10.Formatting;
 using ScrubJay.Randomization;
 using ScrubJay.Randomization.Seeding;
 using ScrubJay.Text.Building;
@@ -34,9 +35,6 @@ board.Move(PileIndex.Deck, PileIndex.PileB, MoveReason.Deal);
 board.Move(PileIndex.Deck, PileIndex.PileC, MoveReason.Deal);
 board.Move(PileIndex.Deck, PileIndex.PileD, MoveReason.Deal);
 
-    
-    
-    
-    
-    
-    fin:
+
+fin:
+return;

@@ -1,10 +1,111 @@
+using ScrubJay.Decka.Sandbox.Iterations.SB10.Formatting;
 using static ScrubJay.Decka.Sandbox.Iterations.SB10.Rank;
 
 namespace ScrubJay.Decka.Sandbox.Iterations.SB10;
 
 /// <summary>
-/// A <see cref="Card"/>'s Rank:
-/// <list type="bullet">
+/// A <see cref="Card"/>'s rank:
+/// <list type="table">
+///     <listheader>
+///         <term>Name</term>
+///         <description><c>___Bits____  |  Value  |  Short  |  Unicode  |  Emoji</c></description>
+///     </listheader>
+///     <item>
+///         <term>None</term>
+///         <description>
+///             <c>0b0000_0000  |  &#8199;&#8199;&#8199;&#8199;0  |  &#8199;&#8199;_&#8199;&#8199;  |  &#8199;&#8199;&#8199;？&#8199;&#8199;  |  &#8199;&#8199;⬜&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Ace</term>
+///         <description>
+///             <c>0b0000_0001  |  &#8199;&#8199;&#8199;&#8199;1  |  &#8199;&#8199;A&#8199;&#8199;  |  &#8199;&#8199;&#8199;Ａ&#8199;&#8199;  |  &#8199;&#8199;🅰️&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Two</term>
+///         <description>
+///             <c>0b0000_0010  |  &#8199;&#8199;&#8199;&#8199;2  |  &#8199;&#8199;2&#8199;&#8199;  |  &#8199;&#8199;&#8199;２&#8199;&#8199;  |  &#8199;&#8199;②&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Three</term>
+///         <description>
+///             <c>0b0000_0011  |  &#8199;&#8199;&#8199;&#8199;3  |  &#8199;&#8199;3&#8199;&#8199;  |  &#8199;&#8199;&#8199;３&#8199;&#8199;  |  &#8199;&#8199;③&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Four</term>
+///         <description>
+///             <c>0b0000_0100  |  &#8199;&#8199;&#8199;&#8199;4  |  &#8199;&#8199;4&#8199;&#8199;  |  &#8199;&#8199;&#8199;４&#8199;&#8199;  |  &#8199;&#8199;④&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Five</term>
+///         <description>
+///             <c>0b0000_0101  |  &#8199;&#8199;&#8199;&#8199;5  |  &#8199;&#8199;5&#8199;&#8199;  |  &#8199;&#8199;&#8199;５&#8199;&#8199;  |  &#8199;&#8199;⑤&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Six</term>
+///         <description>
+///             <c>0b0000_0110  |  &#8199;&#8199;&#8199;&#8199;6  |  &#8199;&#8199;6&#8199;&#8199;  |  &#8199;&#8199;&#8199;６&#8199;&#8199;  |  &#8199;&#8199;⑥&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Seven</term>
+///         <description>
+///             <c>0b0000_0111  |  &#8199;&#8199;&#8199;&#8199;7  |  &#8199;&#8199;7&#8199;&#8199;  |  &#8199;&#8199;&#8199;７&#8199;&#8199;  |  &#8199;&#8199;⑦&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Eight</term>
+///         <description>
+///             <c>0b0000_1000  |  &#8199;&#8199;&#8199;&#8199;8  |  &#8199;&#8199;8&#8199;&#8199;  |  &#8199;&#8199;&#8199;８&#8199;&#8199;  |  &#8199;&#8199;⑧&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Nine</term>
+///         <description>
+///             <c>0b0000_1001  |  &#8199;&#8199;&#8199;&#8199;9  |  &#8199;&#8199;9&#8199;&#8199;  |  &#8199;&#8199;&#8199;９&#8199;&#8199;  |  &#8199;&#8199;⑨&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Ten</term>
+///         <description>
+///             <c>0b0000_1010  |  &#8199;&#8199;&#8199;10  |  &#8199;&#8199;X&#8199;&#8199;  |  &#8199;&#8199;&#8199;Ｘ&#8199;&#8199;  |  &#8199;&#8199;🔟&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Jack</term>
+///         <description>
+///             <c>0b0000_1011  |  &#8199;&#8199;&#8199;11  |  &#8199;&#8199;J&#8199;&#8199;  |  &#8199;&#8199;&#8199;Ｊ&#8199;&#8199;  |  &#8199;&#8199;👦&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Knight</term>
+///         <description>
+///             <c>0b0000_1100  |  &#8199;&#8199;&#8199;12  |  &#8199;&#8199;N&#8199;&#8199;  |  &#8199;&#8199;&#8199;Ｎ&#8199;&#8199;  |  &#8199;&#8199;🐴&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Queen</term>
+///         <description>
+///             <c>0b0000_1101  |  &#8199;&#8199;&#8199;13  |  &#8199;&#8199;Q&#8199;&#8199;  |  &#8199;&#8199;&#8199;Ｑ&#8199;&#8199;  |  &#8199;&#8199;👸&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>King</term>
+///         <description>
+///             <c>0b0000_1110  |  &#8199;&#8199;&#8199;14  |  &#8199;&#8199;K&#8199;&#8199;  |  &#8199;&#8199;&#8199;Ｋ&#8199;&#8199;  |  &#8199;&#8199;🤴&#8199;&#8199;</c>
+///         </description>
+///     </item>
+///     <item>
+///         <term>Joker</term>
+///         <description>
+///             <c>0b0000_1111  |  &#8199;&#8199;&#8199;15  |  &#8199;&#8199;~&#8199;&#8199;  |  &#8199;&#8199;&#8199;～&#8199;&#8199;  |  &#8199;&#8199;🃏&#8199;&#8199;</c>
+///         </description>
+///     </item>
 /// </list>
 /// </summary>
 /// <remarks>
@@ -38,109 +139,52 @@ public enum Rank : byte
 [PublicAPI]
 public static class RankExtensions
 {
+    internal const byte MASK = 0b0000_1111;
+    
     static RankExtensions()
     {
-          var dm = DisplayFormat.For<Rank>();
-        dm.Map(Rank.None)
-            .Add(DisplayFormat.ToString, nameof(Rank.None))
-            .Add(DisplayFormat.Short, "_")
-            .Add(DisplayFormat.Unicode, "❓")
-            .Add(DisplayFormat.Emoji, "❔");
-        dm.Map(Rank.Ace)
-            .Add(DisplayFormat.ToString, nameof(Ace))
-            .Add(DisplayFormat.Short, "A")
-            .Add(DisplayFormat.Unicode, "Ａ")
-            .Add(DisplayFormat.Emoji, "🅰️");
-        dm.Map(Rank.Two)
-            .Add(DisplayFormat.ToString, nameof(Two))
-            .Add(DisplayFormat.Short, "2")
-            .Add(DisplayFormat.Unicode, "２")
-            .Add(DisplayFormat.Emoji, "2️⃣");
-        dm.Map(Rank.Three)
-            .Add(DisplayFormat.ToString, nameof(Three))
-            .Add(DisplayFormat.Short, "3")
-            .Add(DisplayFormat.Unicode, "３")
-            .Add(DisplayFormat.Emoji, "3️⃣");
-        dm.Map(Rank.Four)
-            .Add(DisplayFormat.ToString, nameof(Four))
-            .Add(DisplayFormat.Short, "4")
-            .Add(DisplayFormat.Unicode, "４")
-            .Add(DisplayFormat.Emoji, "4️⃣");
-        dm.Map(Rank.Five)
-            .Add(DisplayFormat.ToString, nameof(Five))
-            .Add(DisplayFormat.Short, "5")
-            .Add(DisplayFormat.Unicode, "５")
-            .Add(DisplayFormat.Emoji, "5️⃣");
-        dm.Map(Rank.Six)
-            .Add(DisplayFormat.ToString, nameof(Six))
-            .Add(DisplayFormat.Short, "6")
-            .Add(DisplayFormat.Unicode, "６")
-            .Add(DisplayFormat.Emoji, "6️⃣");
-        dm.Map(Rank.Seven)
-            .Add(DisplayFormat.ToString, nameof(Seven))
-            .Add(DisplayFormat.Short, "7")
-            .Add(DisplayFormat.Unicode, "７")
-            .Add(DisplayFormat.Emoji, "7️⃣");
-        dm.Map(Rank.Eight)
-            .Add(DisplayFormat.ToString, nameof(Eight))
-            .Add(DisplayFormat.Short, "8")
-            .Add(DisplayFormat.Unicode, "８")
-            .Add(DisplayFormat.Emoji, "8️⃣");
-        dm.Map(Rank.Nine)
-            .Add(DisplayFormat.ToString, nameof(Nine))
-            .Add(DisplayFormat.Short, "9")
-            .Add(DisplayFormat.Unicode, "９")
-            .Add(DisplayFormat.Emoji, "9️⃣");
-        dm.Map(Rank.Ten)
-            .Add(DisplayFormat.ToString, nameof(Ten))
-            .Add(DisplayFormat.Short, "X")
-            .Add(DisplayFormat.Unicode, "Ｘ")
-            .Add(DisplayFormat.Emoji, "🔟");
-        dm.Map(Rank.Jack)
-            .Add(DisplayFormat.ToString, nameof(Jack))
-            .Add(DisplayFormat.Short, "J")
-            .Add(DisplayFormat.Unicode, "Ｊ")
-            .Add(DisplayFormat.Emoji, "🅹");
-        dm.Map(Rank.Knight)
-            .Add(DisplayFormat.ToString, nameof(Knight))
-            .Add(DisplayFormat.Short, "N")
-            .Add(DisplayFormat.Unicode, "Ｎ")
-            .Add(DisplayFormat.Emoji, "♞");
-        dm.Map(Rank.Queen)
-            .Add(DisplayFormat.ToString, nameof(Queen))
-            .Add(DisplayFormat.Short, "Q")
-            .Add(DisplayFormat.Unicode, "Ｑ")
-            .Add(DisplayFormat.Emoji, "🆀");
-        dm.Map(Rank.King)
-            .Add(DisplayFormat.ToString, nameof(King))
-            .Add(DisplayFormat.Short, "K")
-            .Add(DisplayFormat.Unicode, "Ｋ")
-            .Add(DisplayFormat.Emoji, "🅺");
-        dm.Map(Rank.Joker)
-            .Add(DisplayFormat.ToString, nameof(Joker))
-            .Add(DisplayFormat.Short, "~")
-            .Add(DisplayFormat.Unicode, "～")
-            .Add(DisplayFormat.Emoji, "🃏");
+        DisplayFormat
+            .Register<Rank>()
+            .Register(Rank.None, nameof(Rank.None), "_", "？", "⬜")
+            .Register(Rank.Ace, nameof(Ace), "A", "Ａ", "🅰️")
+            .Register(Rank.Two, nameof(Two), "2", "２", "②")
+            .Register(Rank.Three, nameof(Three), "3", "３", "③")
+            .Register(Rank.Four, nameof(Four), "4", "４", "④")
+            .Register(Rank.Five, nameof(Five), "5", "５", "⑤")
+            .Register(Rank.Six, nameof(Six), "6", "６", "⑥")
+            .Register(Rank.Seven, nameof(Seven), "7", "７", "⑦")
+            .Register(Rank.Eight, nameof(Eight), "8", "８", "⑧")
+            .Register(Rank.Nine, nameof(Nine), "9", "９", "⑨")
+            .Register(Rank.Ten, nameof(Ten), "X", "Ｘ", "🔟")
+            .Register(Rank.Jack, nameof(Jack), "J", "Ｊ", "👦")
+            .Register(Rank.Knight, nameof(Knight), "N", "Ｎ", "🐴")
+            .Register(Rank.Queen, nameof(Queen), "Q", "Ｑ", "👸")
+            .Register(Rank.King, nameof(King), "K", "Ｋ", "🤴")
+            .Register(Rank.Joker, nameof(Joker), "~", "～", "🃏");
     }
 
     extension(Rank)
     {
-          
         public static Card operator |(Rank rank, Suit suit)
         {
-            return Card.New(rank, suit);
+            return (Card)((byte)rank | (byte)suit);
         }
         
-        public static byte Mask => 0b0000_1111;
+        public static Card operator +(Rank rank, Suit suit)
+        {
+            return (Card)((byte)rank | (byte)suit);
+        }
+
+        public static Card operator |(Rank rank, Card card) => card.With(rank);
+        
+        public static Card operator +(Rank rank, Card card) => card.With(rank);
+        
+        
+        public static byte Mask => MASK;
         
         public static int BitCount => 4;
         
         public static Rank Default => Rank.None;
-
-        public static Result<Rank> TryParse(string str)
-        {
-            return DisplayFormat.For<Rank>().TryParse(str);
-        }
     }
 
     extension(Rank rank)
@@ -193,11 +237,6 @@ public static class RankExtensions
             if (rank == Joker)
                 return onJoker();
             throw Ex.UndefinedEnum(rank);
-        }
-        
-        public string ToString(DisplayFormat format)
-        {
-            return DisplayFormat.For<Rank>().Display(rank, format);
         }
     }
 }

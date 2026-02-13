@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+using ScrubJay.Decka.Sandbox.Iterations.SB10.Formatting;
 using static InlineIL.IL;
 
 namespace ScrubJay.Decka.Sandbox.Iterations.SB10;
@@ -108,11 +108,6 @@ public static class CardExtensions
         {
             return (Card)((byte)suit | (byte)rank);
         }
-
-        public static Result<Card> TryParse(string? str, IFormatProvider? provider = null)
-        {
-            throw Ex.NotImplemented();
-        }
     }
 
     extension(Card card)
@@ -140,31 +135,13 @@ public static class CardExtensions
         }
 
 
-        public Card With(Suit suit)
-        {
-            int value = (byte)card;
-            // clear the suit bit(s)
-            value &= ~Suit.Mask;
-            // set the suit bit(s)
-            value |= (byte)suit;
-            // fin
-            return (Card)value;
-        }
+      
 
-        public Card With(Rank rank)
-        {
-            int value = (byte)card;
-            // clear the rank bit(s)
-            value &= ~Rank.Mask;
-            // set the rank bit(s)
-            value |= (byte)rank;
-            // fin
-            return (Card)value;
-        }
+     
 
         public string ToString(DisplayFormat format)
         {
-            if (format == DisplayFormat.ToString)
+            if (format == DisplayFormat.Default)
                 return card.ToString();
             if (format == DisplayFormat.Short || format == DisplayFormat.Emoji)
                 return card.Rank.ToString(format) + card.Suit.ToString(format);
@@ -255,4 +232,40 @@ public static class CardExtensions
             }
         }
     }
+    
+    public static Card With(this Card card, Orientation orientation)
+    {
+        Emit.Ldarg(nameof(card));
+        Emit.Ldc_I4(OrientationExtensions.MASK);
+        Emit.Not();
+        Emit.And();
+        Emit.Ldarg(nameof(orientation));
+        Emit.Or();
+        return Return<Card>();
+    }
+    
+    
+    
+    public static Card With(this Card card, Suit suit)
+    {
+        Emit.Ldarg(nameof(card));
+        Emit.Ldc_I4(SuitExtensions.MASK);
+        Emit.Not();
+        Emit.And();
+        Emit.Ldarg(nameof(suit));
+        Emit.Or();
+        return Return<Card>();
+    }
+    
+    public static Card With(this Card card, Rank rank)
+    {
+        Emit.Ldarg(nameof(card));
+        Emit.Ldc_I4(RankExtensions.MASK);
+        Emit.Not();
+        Emit.And();
+        Emit.Ldarg(nameof(rank));
+        Emit.Or();
+        return Return<Card>();
+    }
+    
 }
